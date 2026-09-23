@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebPM</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #0b2138; font-family: "IBM Plex Sans Thai", "Sarabun", sans-serif; }
+  iframe { display: block; width: 100%; height: 100%; border: 0; }
+  #status {
+    position: fixed; inset: 0; display: flex; flex-direction: column; gap: 10px;
+    align-items: center; justify-content: center; color: #cadcfc; text-align: center; padding: 24px;
+  }
+  #status.hidden { display: none; }
+  #status a { color: #4dc4b4; }
+</style>
+</head>
+<body>
+  <div id="status">
+    <div>กำลังโหลด WebPM…</div>
+    <div style="font-size:13px;color:#7d94ad;max-width:420px;">
+      ถ้าค้างเกิน 10 วินาที หรือขึ้นหน้า "ไม่พบเพจ" ให้ล็อกอิน Google ในกรอบด้านล่าง
+      แล้วรีเฟรชหน้านี้อีกครั้ง — หรือ
+      <a href="https://script.google.com/macros/s/AKfycbxp15eoeA6V1-dNSztAWvWhQ4QIMbls4Fbe3tX0lhQeI0sQYyTNvoId5aBZSJreS2DC0A/exec" target="_blank" rel="noopener">เปิดลิงก์ตรงในแท็บใหม่</a>
+    </div>
+  </div>
+  <iframe
+    id="app"
+    credentialless
+    src="https://script.google.com/macros/s/AKfycbxp15eoeA6V1-dNSztAWvWhQ4QIMbls4Fbe3tX0lhQeI0sQYyTNvoId5aBZSJreS2DC0A/exec"
+    title="WebPM"
+    referrerpolicy="no-referrer"
+  ></iframe>
+  <script>
+    // เอาข้อความ "กำลังโหลด" ออกทันทีที่ iframe เริ่มโหลดเนื้อหา
+    // (โหลดสำเร็จหรือไม่ ผู้ใช้เห็นผลจริงในกรอบอยู่แล้ว ไม่ต้องเดาสถานะซ้ำ)
+    document.getElementById("app").addEventListener("load", function () {
+      document.getElementById("status").classList.add("hidden");
+    });
+  </script>
+</body>
+</html>
